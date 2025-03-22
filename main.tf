@@ -35,7 +35,7 @@ resource "aws_security_group" "allow_ssh" {
     name = "${var.prefix}-sg"
   }
 }
-#if var.ssh_access is true(?) then create (1) resource, if not(:) create (0) 
+
 resource "aws_vpc_security_group_ingress_rule" "allow_ssh_rule" {
   count             = var.ssh_access ? 1 : 0
   security_group_id = aws_security_group.allow_ssh.id
@@ -58,7 +58,7 @@ data "aws_ami" "ubuntu" {
     values = ["hvm"]
   }
 
-  owners = ["099720109477"] # Canonical
+  owners = ["099720109477"] 
 }
 
 resource "aws_instance" "main_instance" {
